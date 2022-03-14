@@ -1,6 +1,6 @@
 # thepirates
 
-###설치 및 환경 가이드
+### 설치 및 환경 가이드
 File -> Settings -> gradle 검색 -> 아래사진처럼 설정후 ok
 ![image](https://user-images.githubusercontent.com/25544668/158130789-cde957f2-ab93-4b54-88ae-be26228f7414.png)
 
