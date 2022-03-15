@@ -1,1 +1,16 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create   #애플리케이션  실행시점에 내가가지고잇는 엔티티를지우고(테이블) 다시생성
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
 
+
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
