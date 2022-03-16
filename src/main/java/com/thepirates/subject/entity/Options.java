@@ -1,6 +1,5 @@
 package com.thepirates.subject.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,9 +28,9 @@ public class Options {
     cascade = CascadeType.ALL 을 포함해야 에러 메시지가 출력되지 않습니다.*/
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
-    private Item item;
+    private Product item;
 
-    public void saveItem(Item item) {
+    public void saveItem(Product item) {
         this.item = item;
     }
 }

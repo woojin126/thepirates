@@ -1,11 +1,15 @@
 package com.thepirates.subject.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class Delivery {
@@ -16,7 +20,8 @@ public class Delivery {
 
     private String type;
 
-    private String closing;
+    @JsonFormat(pattern = "HH:mm", timezone = "Asia/Seoul")
+    private LocalTime closing;
 
     private Integer price;
 }

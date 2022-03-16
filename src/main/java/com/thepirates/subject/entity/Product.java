@@ -1,10 +1,11 @@
 package com.thepirates.subject.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thepirates.subject.dto.ProductRequestDto;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Item extends BaseTimeEntity {
+public class Product extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +39,8 @@ public class Item extends BaseTimeEntity {
     }
 
     //상품 추가 메서드
-    public static Item createItem(ProductRequestDto request) {
-        Item item = new Item();
+    public static Product createItem(ProductRequestDto request) {
+        Product item = new Product();
         List<Options> options = request.getOptions();
         for (Options option : options) {
             item.addItemOptions(option);
@@ -47,7 +48,6 @@ public class Item extends BaseTimeEntity {
         item.setDelivery(request.getDelivery());
         item.setDescription(request.getDescription());
         item.setName(request.getName());
-
         return item;
     }
 
