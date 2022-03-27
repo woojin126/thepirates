@@ -38,12 +38,12 @@ https://www.notion.so/API-29f992f9ca674ef18f4f54b6b4f15e18
 <br />
 
 - 상품 수령일 선택 목록
-  1. 배송 마감일자 request 데이터 요구사항이 HH:mm 이라 LocalTime 필드를 사용.
+  - 배송 마감일자 request 데이터 요구사항이 HH:mm 이라 LocalTime 필드를 사용.
     
-  2. ![image](https://user-images.githubusercontent.com/25544668/160294208-a898e0b3-78ad-4c8a-b599-ed8d6d3d42d1.png)
-    - (사진 1번) 여기서 LocalDateTime의 메서드인 LocalDateTime.isBefore()을 사용하여 마감일자를 쉽게 구별하기위해 LocalTime 필드를 LocalDateTime으로 변경   
-    - (사진 2번) 현재시간.isBefore(마감시간) true false 사용하여 +0일 / +1일 결정
-    - (사진 3번) "fast" / "regular" 타입에따라 +0일 / +1 일 결정
-    - (사진 4번) 2,3번 데이터를 인자값으로 넘겨 최종적으로 결과물을 연산하는 메서드.
+  -  ![image](https://user-images.githubusercontent.com/25544668/160294208-a898e0b3-78ad-4c8a-b599-ed8d6d3d42d1.png)
+     - (사진 1번) 여기서 LocalDateTime의 메서드인 LocalDateTime.isBefore()을 사용하여 마감일자를 쉽게 구별하기위해 LocalTime 필드를 LocalDateTime으로 변경   
+     - (사진 2번) 현재시간.isBefore(마감시간) true false 사용하여 +0일 / +1일 결정
+     - (사진 3번) "fast" / "regular" 타입에따라 +0일 / +1 일 결정
+     - (사진 4번) 2,3번 데이터를 인자값으로 넘겨 최종적으로 결과물을 연산하는 메서드.
     
      
