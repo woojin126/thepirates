@@ -25,7 +25,7 @@ public class DateCalculate {
         nowDay = LocalDate.from(nowDay).plusDays(closingTimeUnderOrExcess);
 
         for (int i = 0 ; i < 5 ; i ++) {
-            selectDeliveryCollect.add(nowDay.plusDays(i).format(DateTimeFormatter.ofPattern("MM월 dd일(E요일)")));
+            selectDeliveryCollect.add(nowDay.plusDays(i).format(DateTimeFormatter.ofPattern("MM월 dd일 E요일")));
         }
         return selectDeliveryCollect;
     }

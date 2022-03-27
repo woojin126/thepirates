@@ -37,8 +37,8 @@ public class ItemService {
     //상품 상세 조회
     public ProductDetailResponseDto findByDetailProduct(Long productId) {
         ProductDetailResponseDto productDetailResponseDto = productRepository.findOneById(productId).orElseThrow(() -> new NullPointerException("아이템 아이디가 없습니다."));
-        List<OptionResponseDto> optionByProductId = optionsRepository.findOptionByProductId(productId);
-        productDetailResponseDto.setOptions(optionByProductId);
+        List<OptionResponseDto> optionList = optionsRepository.findOptionByProductId(productId);
+        productDetailResponseDto.setOptions(optionList);
 
         return productDetailResponseDto;
     }
