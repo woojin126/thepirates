@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.LocalTime;
 
@@ -24,4 +23,6 @@ public class Delivery {
     private LocalTime closing;
 
     private Integer price;
+
+
 }

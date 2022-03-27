@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -37,7 +38,7 @@ public class ItemController {
 
     //상품 수령일 선택 목록 API
     @GetMapping("/api/{productId}/deliveryDate")
-    public List<DateResponseDto> getDeliveryDate(@PathVariable Long productId) {
+    public List<DateResponseDto> getDeliveryDate(@PathVariable Long productId) throws Exception {
         return itemService.findBySelectDeliveryDate(productId, LocalDateTime.now());
     }
 

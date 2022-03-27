@@ -12,10 +12,12 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product,Long> {
 
-    @Query(value = " SELECT distinct new com.thepirates.subject.dto.ProductResponseDto (i.name,i.description, min(o.price)) " +
+    @Query(value = " SELECT distinct new com.thepirates.subject.dto.ProductResponseDto (i.name,i.description, min(o.price), i.createdAt) " +
             " from Product i join i.optionsList o on i.id = o.item.id" +
-            " group by i.name ")
+            " group by i.name " +
+            " order by i.createdAt desc ")
     List<ProductResponseDto> findAllByItem();
+
 
 
     @Query(value = " select distinct new com.thepirates.subject.dto.ProductDetailResponseDto (t.name,t.description,t.delivery.type) from Product t where t.id =:productId")

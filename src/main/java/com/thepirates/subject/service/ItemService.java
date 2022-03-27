@@ -1,17 +1,24 @@
 package com.thepirates.subject.service;
 
+import com.thepirates.subject.dateUtils.DateCalculate;
 import com.thepirates.subject.dto.*;
 import com.thepirates.subject.entity.Product;
 import com.thepirates.subject.repository.ProductRepository;
 import com.thepirates.subject.repository.OptionsRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = false)
@@ -53,11 +60,15 @@ public class ItemService {
                 now.getDayOfMonth(),
                 product.getDelivery().getClosing().getHour(),
                 product.getDelivery().getClosing().getMinute());
-
-        System.out.println(closingTime +"시간");
-        System.out.println(LocalDateTime.from(closingTime).minusDays(1) + "시간2");
-        return null;
+        //현재시간이 마감시간 이전이면 true 아니면 false
+        boolean closeTime = now.isBefore(closingTime);
+        //익일 배송, 당일 배송
+        String slowOrFastDelivery = product.getDelivery().getType();
+        //배달일자 계산
+        List<String> deliveryDate = DateCalculate.getDeliveryDate(closeTime, slowOrFastDelivery);
+        return deliveryDate.stream().map(s -> DateResponseDto.builder().date(s).build()).collect(Collectors.toList());
     }
+
 
     // 상품 삭제
     @Transactional
