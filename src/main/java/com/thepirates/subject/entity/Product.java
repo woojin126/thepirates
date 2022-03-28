@@ -2,16 +2,12 @@ package com.thepirates.subject.entity;
 
 import com.thepirates.subject.dto.ProductRequestDto;
 import lombok.*;
-
 import javax.persistence.*;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 @Builder
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -32,6 +28,12 @@ public class Product extends BaseTimeEntity {
     @OneToMany(mappedBy = "item",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Options> optionsList = new ArrayList<>();
 
+    public Product(String name, String description, Delivery delivery) {
+        this.name = name;
+        this.description = description;
+        this.delivery = delivery;
+    }
+
     //@OneToMany 단방향보다는 @ManyToOne 양방향을 사용.
     public void addItemOptions(Options options) {
         optionsList.add(options);
@@ -40,14 +42,12 @@ public class Product extends BaseTimeEntity {
 
     //상품 추가 메서드
     public static Product createItem(ProductRequestDto request) {
-        Product item = new Product();
+        Product item = new Product(request.getName(),request.getDescription(),request.getDelivery());
         List<Options> options = request.getOptions();
         for (Options option : options) {
             item.addItemOptions(option);
         }
-        item.setDelivery(request.getDelivery());
-        item.setDescription(request.getDescription());
-        item.setName(request.getName());
+
         return item;
     }
 
