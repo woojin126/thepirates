@@ -3,6 +3,7 @@ package com.thepirates.subject.repository;
 import com.thepirates.subject.dto.ProductDetailResponseDto;
 import com.thepirates.subject.dto.ProductResponseDto;
 import com.thepirates.subject.entity.Product;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,8 +18,6 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
             " group by i.name " +
             " order by i.createdAt desc ")
     List<ProductResponseDto> findAllByItem();
-
-
 
     @Query(value = " select distinct new com.thepirates.subject.dto.ProductDetailResponseDto (t.name,t.description,t.delivery.type) from Product t where t.id =:productId")
     Optional<ProductDetailResponseDto> findOneById(@Param("productId") Long productId);

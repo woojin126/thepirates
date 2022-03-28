@@ -44,10 +44,8 @@ public class Product extends BaseTimeEntity {
     public static Product createItem(ProductRequestDto request) {
         Product item = new Product(request.getName(),request.getDescription(),request.getDelivery());
         List<Options> options = request.getOptions();
-        for (Options option : options) {
-            item.addItemOptions(option);
-        }
-
+        //양방향 연관관계를 위한 편의 메서드
+        options.forEach(item::addItemOptions);
         return item;
     }
 
