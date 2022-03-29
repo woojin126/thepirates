@@ -36,13 +36,14 @@ public class ItemController {
 
     //상품 수령일 선택 목록 API
     @GetMapping("/api/{productId}/deliveryDate")
-    public List<DateResponseDto> getDeliveryDate(@PathVariable Long productId) throws Exception {
+    public List<DateResponseDto> getDeliveryDate(@PathVariable Long productId) {
         return itemService.findBySelectDeliveryDate(productId, LocalDateTime.now());
     }
 
     // 상품 삭제
-    @DeleteMapping("/api/product/{id}")
-    public void deleteProduct(@PathVariable Long id) {
-        itemService.deleteProduct(id);
+    @DeleteMapping("/api/product/{productId}")
+    public Long deleteProduct(@PathVariable Long productId) {
+        itemService.deleteProduct(productId);
+        return productId;
     }
 }

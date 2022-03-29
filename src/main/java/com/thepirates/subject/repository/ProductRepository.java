@@ -20,5 +20,5 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<ProductResponseDto> findAllByItem();
 
     @Query(value = " select distinct new com.thepirates.subject.dto.ProductDetailResponseDto (t.name,t.description,t.delivery.type) from Product t where t.id =:productId")
-    Optional<ProductDetailResponseDto> findOneById(@Param("productId") Long productId);
+    Optional<ProductDetailResponseDto> findOneByProductId(@Param("productId") Long productId);
 }

@@ -7,9 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OptionsRepository extends JpaRepository<Options,Long> {
 
     @Query(value = "select new com.thepirates.subject.dto.OptionResponseDto ( o.item.id, o.name, o.price ) from Options o where o.item.id =:productId")
-    List<OptionResponseDto> findOptionByProductId(@Param("productId") Long productId);
+    Optional<List<OptionResponseDto>> findOptionByProductId(@Param("productId") Long productId);
 }

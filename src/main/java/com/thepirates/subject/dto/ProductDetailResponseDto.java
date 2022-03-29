@@ -18,4 +18,8 @@ public class ProductDetailResponseDto {
         this.description = description;
         this.delivery = delivery;
     }
+
+    public void saveOptions(List<OptionResponseDto> options) {
+        this.options = options;
+    }
 }

@@ -36,9 +36,9 @@ public class ItemService {
 
     //상품 상세 조회
     public ProductDetailResponseDto findByDetailProduct(Long productId) {
-        ProductDetailResponseDto productDetailResponseDto = productRepository.findOneById(productId).orElseThrow(() -> new NullPointerException("아이템 아이디가 없습니다."));
-        List<OptionResponseDto> optionList = optionsRepository.findOptionByProductId(productId);
-        productDetailResponseDto.setOptions(optionList);
+        ProductDetailResponseDto productDetailResponseDto = productRepository.findOneByProductId(productId).orElseThrow(() -> new NullPointerException("아이템 아이디가 없습니다."));
+        List<OptionResponseDto> optionList = optionsRepository.findOptionByProductId(productId).orElseThrow(() -> new NullPointerException("아이템 아이디가 없습니다."));
+        productDetailResponseDto.saveOptions(optionList);
 
         return productDetailResponseDto;
     }
@@ -58,13 +58,18 @@ public class ItemService {
         String slowOrFastDelivery = product.getDelivery().getType();
         //배달일자 계산
         List<String> deliveryDate = DateCalculate.getDeliveryDate(closeTime, slowOrFastDelivery);
-        return deliveryDate.stream().map(s -> DateResponseDto.builder().date(s).build()).collect(Collectors.toList());
-    }
 
+        return deliveryDate.stream().map(s ->
+                DateResponseDto.builder()
+                .date(s)
+                .build()
+        ).collect(Collectors.toList());
+    }
 
     // 상품 삭제
     @Transactional
-    public void deleteProduct(Long productId) {
+    public Long deleteProduct(Long productId) {
         productRepository.deleteById(productId);
+        return productId;
     }
 }
