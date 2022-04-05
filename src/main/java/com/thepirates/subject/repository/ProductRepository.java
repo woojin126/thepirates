@@ -3,7 +3,6 @@ package com.thepirates.subject.repository;
 import com.thepirates.subject.dto.ProductDetailResponseDto;
 import com.thepirates.subject.dto.ProductResponseDto;
 import com.thepirates.subject.entity.Product;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

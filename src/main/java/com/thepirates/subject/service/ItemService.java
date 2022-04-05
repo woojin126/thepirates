@@ -52,7 +52,8 @@ public class ItemService {
                 now.getDayOfMonth(),
                 product.getDelivery().getClosing().getHour(),
                 product.getDelivery().getClosing().getMinute());
-        //현재시간이 마감시간 이전이면 true 아니면 false
+
+        //현재시간이 마감시간 이전이면 true 아니면 false공휴일
         boolean closeTime = now.isBefore(closingTime);
         //익일 배송, 당일 배송
         String slowOrFastDelivery = product.getDelivery().getType();

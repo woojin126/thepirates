@@ -1,5 +1,6 @@
 package com.thepirates.subject.dateUtils;
 
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,6 +23,7 @@ public class DateCalculate {
 
         nowDay = weekCheck(nowDay); //주말이 껴있을 때 일요일은 +1 토요일은 +2
         nowDay = LocalDate.from(nowDay).plusDays(deliveryTodayOrTomorrow);
+        nowDay = weekCheck(nowDay);
         nowDay = LocalDate.from(nowDay).plusDays(closingTimeUnderOrExcess);
 
         for (int i = 0 ; i < 5 ; i ++) {
@@ -31,6 +33,7 @@ public class DateCalculate {
     }
 
     public static LocalDate weekCheck(LocalDate nowDay) {
+
         if (nowDay.getDayOfWeek().toString().equals("sunday"))
             nowDay = LocalDate.from(nowDay).plusDays(1);
         else if(nowDay.getDayOfWeek().toString().equals("saturday"))
